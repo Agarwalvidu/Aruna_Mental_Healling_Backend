@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors'); // Import cors middleware
@@ -16,6 +17,9 @@ app.use(bodyParser.json());
 
 // Enable CORS
 app.use(cors());
+
+// Serve static files from the uploads directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
 app.use('/api/posts', require('./routes/posts'));
